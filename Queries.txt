@@ -1,0 +1,35 @@
+/* Query 1 */
+select c.City, sum(Total)
+from Invoice i
+join Customer c
+on i.CustomerId = c.CustomerId
+GROUP BY 1
+order by 2 desc
+
+
+/* Query 2 */
+select i.BillingCountry, count(*)
+from Invoice i
+join Customer c
+on i.CustomerId = c.CustomerId
+GROUP BY 1
+order by 2 desc
+
+
+/* Query 3 */
+SELECT Customer.State, count(*) as purchases 
+FROM Customer
+JOIN Invoice
+ON Customer.CustomerId = Invoice.CustomerId
+WHERE Customer.Country = 'USA'
+GROUP by Customer.State
+
+
+/* Query 4 */
+SELECT FirstName ||' '|| LastName As Full_Name, sum(total) as  total_amount 
+from Customer
+join Invoice
+on Invoice.CustomerId = Customer.CustomerId
+group by full_name
+ORDER by total_amount DESC
+LIMIT 7
